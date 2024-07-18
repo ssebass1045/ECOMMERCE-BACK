@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
+  constructor(private _userRepository: UsersRepository){}
   // create(createUserDto: CreateUserDto) {
   //   return 'This action adds a new user';
   // }
 
   findAll() {
-    return `This action returns all users`;
+    return this._userRepository.findAll();
   }
 
   // findOne(id: number) {
