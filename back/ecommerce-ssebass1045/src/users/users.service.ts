@@ -5,7 +5,7 @@ import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(private _userRepository: UsersRepository){}
+  constructor(private readonly _userRepository: UsersRepository){}
   // create(createUserDto: CreateUserDto) {
   //   return 'This action adds a new user';
   // }
