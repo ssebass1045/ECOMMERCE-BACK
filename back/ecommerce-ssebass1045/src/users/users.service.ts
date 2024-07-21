@@ -6,23 +6,29 @@ import { UsersRepository } from './users.repository';
 @Injectable()
 export class UsersService {
   constructor(private readonly _userRepository: UsersRepository){}
-  // create(createUserDto: CreateUserDto) {
-  //   return 'This action adds a new user';
-  // }
-
-  findAll() {
-    return this._userRepository.findAll();
+  
+  
+  create(createUser: CreateUserDto) {
+    return this._userRepository.create(createUser);
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
+  findAll(page: number, Limit: number) {
+    return this._userRepository.findAll(page, Limit);
+  }
+
+  update(updateUser: UpdateUserDto, id: string){
+    return this._userRepository.update(updateUser, id);
+  }
+
+  findOne(id: number) {
+    return this._userRepository.findOne(id);
+  }
 
   // update(id: number, updateUserDto: UpdateUserDto) {
   //   return `This action updates a #${id} user`;
   // }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
+  remove(id: number) {
+    return this._userRepository.remove(id);
+  }
 }
