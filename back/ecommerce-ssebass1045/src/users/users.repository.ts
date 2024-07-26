@@ -1,11 +1,21 @@
 import { Injectable } from "@nestjs/common";
-import { User } from "./entities/user.entity";
 
+
+type User = {
+    id: number;
+    email: string;
+    name: string;
+    password: string;
+    address: string;
+    phone: string;
+    country?: string | undefined;
+    city?: string | undefined;
+};
 
 
 @Injectable()
 export class UsersRepository {
- user: User[] = [
+ private users: User[] = [
     {
     id: 1,
     email: "1@mail",  
@@ -30,7 +40,7 @@ export class UsersRepository {
 async findAll(page: number, Limit: number){
     const start = (page - 1) * Limit
     const end = start + +Limit
-    const user = this.user.slice(start, end)
+    const user = this.users.slice(start, end)
     
     return user.map(({password, ...user})=> user);
     // this.user = this.user.map(person => {
@@ -41,13 +51,13 @@ async findAll(page: number, Limit: number){
 
     
     async create(createUser){
-        const id=this.user.length+1;
-        this.user = [...this.user, {id, ...createUser}];
+        const id=this.users.length+1;
+        this.users = [...this.users, {id, ...createUser}];
         return {id, ...createUser}
     }
     
     async update(updateUser, id){
-        this.user = this.user.map(person =>{
+        this.users = this.users.map(person =>{
             if (person.id==id){
                 return {
                     ...person, 
@@ -67,11 +77,11 @@ return `update exit in user id ${id}`;
 }
 
 async findOne(id){
-    return this.user.find(person => person.id==id);
+    return this.users.find(person => person.id==id);
 }
 
 async remove(id){
-    this.user = this.user.filter(person => person.id!=id);
+    this.users = this.users.filter(person => person.id!=id);
     return  `remove exit in id ${id}`
 }
 

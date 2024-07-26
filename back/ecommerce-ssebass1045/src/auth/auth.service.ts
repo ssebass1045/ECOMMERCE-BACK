@@ -1,20 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
-import { UsersRepository } from 'src/users/users.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Users } from 'src/users/entities/users.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly _userRepository: UsersRepository){}
-  auth(credential) {
+  constructor(
+    @InjectRepository(Users) private _usersRepository: Repository<Users>,
+  ) {}
+
+  async auth(credential) {
     const { email, password } = credential;
-    const result = this._userRepository.user.find(person => {
-      if (email === person.email && password === person.password) {
-        return person;
-      } 
-    })
-    return result? result: "user o Password incorrect";
+
+    // Buscar al usuario por email
+    const user = await this._usersRepository.findOne({ where: { email } });
+
+    // Verificar si el usuario existe y si la contraseña es correcta
+    if (user && user.password === password) {
+      return user;
+    }
+
+    return "user o Password incorrect";
   }
+}
+
+
+
+
+
+// import { Injectable } from '@nestjs/common';
+// import { CreateAuthDto } from './dto/create-auth.dto';
+// import { UpdateAuthDto } from './dto/update-auth.dto';
+// import { UsersRepository } from 'src/users/users.repository';
+// import { InjectRepository } from '@nestjs/typeorm';
+// import { Users } from 'src/users/entities/users.entity';
+// import { Repository } from 'typeorm';
+
+// @Injectable()
+// export class AuthService {
+//   constructor(@InjectRepository(Users) private _usersRepository:Repository<Users> ){}
+
+  
+//   auth(credential) {
+//     const { email, password } = credential;
+//     const result = this._usersRepository.user.find(person => {
+//       if (email === person.email && password === person.password) {
+//         return person;
+//       } 
+//     })
+//     return result? result: "user o Password incorrect";
+//   }
 
   // findAll() {
   //   return `This action returns all auth`;
@@ -31,4 +66,4 @@ export class AuthService {
   // remove(id: number) {
   //   return `This action removes a #${id} auth`;
   // }
-}
+

@@ -1,0 +1,98 @@
+[
+    {
+      "name": "Iphone 15",
+      "description": "The best smartphone in the world",
+      "price": 199.99,
+      "stock": 12,
+      "imgUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-select-2023?wid=470&hei=556&fmt=jpeg&qlt=90&.v=1694056685781",
+      "category": "smartphone"
+    },
+    {
+      "name": "Samsung Galaxy S23",
+      "description": "The best smartphone in the world",
+      "price": 150.0,
+      "stock": 12,
+      "imgUrl": "https://images.samsung.com/is/image/samsung/p6pim/latin/2302/gallery/latin-galaxy-s23-s911-sm-s911bzkjlto-thumb-534628046?$160_160_PNG$",
+      "category": "smartphone"
+    },
+    {
+      "name": "Motorola Edge 40",
+      "description": "The best smartphone in the world",
+      "price": 179.89,
+      "stock": 12,
+      "imgUrl": "https://motorolaus.vtexassets.com/arquivos/ids/157309-800-800?v=638105809331100000&width=800&height=800&aspect=true",
+      "category": "smartphone"
+    },
+    {
+      "name": "Samsung Odyssey G9",
+      "description": "The best monitor in the world",
+      "price": 299.99,
+      "stock": 12,
+      "imgUrl": "https://images.samsung.com/is/image/samsung/p6pim/latin/lf49g95tsmlxzs/gallery/latin-odyssey-g9-g95t-lf49g95tsmlxzs-front-black-334218024?$650_519_PNG$",
+      "category": "monitor"
+    },
+    {
+      "name": "LG UltraGear",
+      "description": "The best monitor in the world",
+      "price": 199.99,
+      "stock": 12,
+      "imgUrl": "https://www.lg.com/us/images/monitors/md07509070/gallery/desktop-01.jpg",
+      "category": "monitor"
+    },
+    {
+      "name": "Acer Predator",
+      "description": "The best monitor in the world",
+      "price": 150.0,
+      "stock": 12,
+      "imgUrl": "https://images.acer.com/is/image/acer/acer-predator-cg437k-pbmiiippuzx-wp1?$background$&fmt=png-alpha&fit=constrain,1&wid=512",
+      "category": "monitor"
+    },
+    {
+      "name": "Razer BlackWidow V3",
+      "description": "The best keyboard in the world",
+      "price": 99.99,
+      "stock": 12,
+      "imgUrl": "https://assets3.razerzone.com/HDuMCwxJeLyRG8MQHf0NEA4X6xE=/1500x1000/https%3A%2F%2Fassets.razerzone.com%2Feeimages%2Fproducts%2F16884%2Fbw-v3-photocrop-1200x800-01.jpg",
+      "category": "keyboard"
+    },
+    {
+      "name": "Corsair K70",
+      "description": "The best keyboard in the world",
+      "price": 79.99,
+      "stock": 12,
+      "imgUrl": "https://www.corsair.com/medias/sys_master/images/images/h9d/h59/9030832988190/-CH-9109014-NA-Gallery-K70-LUX-RGB-01.png",
+      "category": "keyboard"
+    },
+    {
+      "name": "Logitech G Pro",
+      "description": "The best keyboard in the world",
+      "price": 59.99,
+      "stock": 12,
+      "imgUrl": "https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-keyboard/pro-x-keyboard-gallery-1.png?v=1",
+      "category": "keyboard"
+    },
+    {
+      "name": "Razer Viper",
+      "description": "The best mouse in the world",
+      "price": 49.99,
+      "stock": 12,
+      "imgUrl": "https://assets.razerzone.com/eeimages/products/31147/razer-viper-v2-pro-black-front.png",
+      "category": "mouse"
+    },
+    {
+      "name": "Logitech G502 Pro",
+      "description": "The best mouse in the world",
+      "price": 39.99,
+      "stock": 12,
+      "imgUrl": "https://resource.logitechg.com/w_1440,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g502-hero/g502-hero-gallery-1.png?v=1",
+      "category": "mouse"
+    },
+    {
+      "name": "SteelSeries Rival 3",
+      "description": "The best mouse in the world",
+      "price": 29.99,
+      "stock": 12,
+      "imgUrl": "https://media.steelseriescdn.com/thumbs/filer_public/35/93/3593d93d-252d-4ff6-9315-1f673167b108/rival3gallery1.png__1850x800_q100_crop-scale_optimize_subsampling-2.png",
+      "category": "mouse"
+    }
+  ]
