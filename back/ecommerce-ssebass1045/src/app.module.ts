@@ -12,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrdersModule } from './orders/orders.module';
 import { OrderDetailsModule } from './orderdetails/orderdetails.module';
 import { CategoriesModule } from './categories/categories.module';
+import { FilesModule } from './files/files.module';
 
 
 @Module({
@@ -31,6 +32,7 @@ import { CategoriesModule } from './categories/categories.module';
     OrdersModule,
     OrderDetailsModule,
     CategoriesModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
