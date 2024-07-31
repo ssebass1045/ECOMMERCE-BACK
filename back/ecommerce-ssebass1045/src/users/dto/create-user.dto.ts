@@ -1,4 +1,5 @@
-import { Matches, IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength, MinLength,  } from "class-validator";
+import { Matches, IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength, MinLength, validate, Validate,  } from "class-validator";
+import { MathPassword } from "src/decorators/mathPassword.decorator";
 
 export class CreateUserDto{
     
@@ -21,6 +22,11 @@ export class CreateUserDto{
     @MinLength(8)
     @MaxLength(15)
     password: string;
+
+
+    @IsNotEmpty()
+    @Validate(MathPassword,['password'])
+    passwordConfirmation: string;
 
     @IsNotEmpty()
     @IsString()

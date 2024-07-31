@@ -13,6 +13,7 @@ import { OrdersModule } from './orders/orders.module';
 import { OrderDetailsModule } from './orderdetails/orderdetails.module';
 import { CategoriesModule } from './categories/categories.module';
 import { FilesModule } from './files/files.module';
+import { JwtModule } from '@nestjs/jwt';
 
 
 @Module({
@@ -25,6 +26,11 @@ import { FilesModule } from './files/files.module';
     TypeOrmModule.forRootAsync({
       inject:[ConfigService],
       useFactory: (config: ConfigService) => config.get('typeorm')
+    }),
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET,
+      signOptions: {expiresIn: '1h'}
     }),
     ProductsModule,
     UsersModule,

@@ -27,7 +27,7 @@ export class ProductsController {
     }
     
     @Put(":id")
-    //@UseGuards(AuthGuard)
+    @UseGuards(AuthGuard)
     updateProduct(@Query('id') id: string, @Body() product:any ){
       return this.productsService.update(id, product);
     }

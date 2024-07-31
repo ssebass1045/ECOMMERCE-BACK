@@ -8,10 +8,22 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post("/signin")
-  auth(@Body() credential: CreateAuthDto) {
-    return this.authService.auth(credential);
+
+  @Post("/signup")
+  signUp(@Body()user: CreateUserDto){
+    const {passwordConfirmation, ...cleanUser } = user;
+
+    return this.authService.signUp(cleanUser);
   }
+
+
+
+  @Post("/signin")
+  signIn(@Body() credentials: CreateAuthDto) {
+    const { email, password } = credentials
+    return this.authService.signIn(email, password);
+  }
+}
 
   // @Get()
   // findAll() {
@@ -32,4 +44,4 @@ export class AuthController {
   // remove(@Param('id') id: string) {
   //   return this.authService.remove(+id);
   // }
-}
+

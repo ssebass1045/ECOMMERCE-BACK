@@ -1,69 +1,87 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from 'src/users/entities/users.entity';
+import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
+import * as brypt from "bcrypt";
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(Users) private _usersRepository: Repository<Users>,
-  ) {}
+     private usersService: UsersService,
+    private jwtService: JwtService ) {}
 
-  async auth(credential) {
-    const { email, password } = credential;
 
-    // Buscar al usuario por email
-    const user = await this._usersRepository.findOne({ where: { email } });
+async signUp(user: Partial<Users>){
+  const {email, password} = user;
 
-    // Verificar si el usuario existe y si la contraseña es correcta
-    if (user && user.password === password) {
-      return user;
-    }
+  const foundUser = await this.usersService.findOneByEmail(email);
 
-    return "user o Password incorrect";
+  if(foundUser){
+    throw new BadRequestException('User already exists');
   }
+  const hashedPassword = await brypt.hash(password, 10)
+
+  if (!hashedPassword){
+    throw new BadRequestException(" Encrypt error")
+  }
+
+
+  return await this.usersService.create({
+
+    ...user, 
+    password: hashedPassword,
+  })
+
 }
 
 
+async signIn(email: string, password: string){
+  const foundUser = await this.usersService.findOneByEmail(email);
 
+  if (!foundUser){
+    throw new BadRequestException("invalid credentials");
+  }
+  const isPasswordValid = await brypt.compare(password, foundUser.password);
 
+    if (!isPasswordValid) {
+      throw new BadRequestException("invalid credentials");
+    }
+    const userPayload = {
+      id: foundUser.id,
+      email: foundUser.email,
+    };
 
-// import { Injectable } from '@nestjs/common';
-// import { CreateAuthDto } from './dto/create-auth.dto';
-// import { UpdateAuthDto } from './dto/update-auth.dto';
-// import { UsersRepository } from 'src/users/users.repository';
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Users } from 'src/users/entities/users.entity';
-// import { Repository } from 'typeorm';
+    const token = this.jwtService.sign(userPayload); //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+    // eyJzdWIiOiIxMjM0NTYiLCJuYW1lIjoiSm9obiBEb2UiLCJhdWQiOiJodHRwczovL2VqZW1wbGUuY29tIiwiZXhwIjoxNTE2MjM<ctrl61>5MDIyfQ.
+    // SflKxwRJSMeKKF2QT4fwpMeoM84w_7<ctrl61>bEn_4uIrJ0
+
+    return {
+      message: "user logged in succesfully", token,
+    };
+
+  }
+
+}
 
 // @Injectable()
 // export class AuthService {
-//   constructor(@InjectRepository(Users) private _usersRepository:Repository<Users> ){}
+//   constructor(
+//     @InjectRepository(Users) private _usersRepository: Repository<Users>,
+//   ) {}
 
-  
-//   auth(credential) {
-//     const { email, password } = credential;
-//     const result = this._usersRepository.user.find(person => {
-//       if (email === person.email && password === person.password) {
-//         return person;
-//       } 
-//     })
-//     return result? result: "user o Password incorrect";
-//   }
+  // async auth(credential) {
+  //   const { email, password } = credential;
 
-  // findAll() {
-  //   return `This action returns all auth`;
-  // }
+  //   // Buscar al usuario por email
+  //   const user = await this._usersRepository.findOne({ where: { email } });
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} auth`;
-  // }
+  //   // Verificar si el usuario existe y si la contraseña es correcta
+  //   if (user && user.password === password) {
+  //     return user;
+  //   }
 
-  // update(id: number, updateAuthDto: UpdateAuthDto) {
-  //   return `This action updates a #${id} auth`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} auth`;
+  //   return "user o Password incorrect";
   // }
 
