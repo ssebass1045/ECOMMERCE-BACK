@@ -51,6 +51,7 @@ async signIn(email: string, password: string){
     const userPayload = {
       id: foundUser.id,
       email: foundUser.email,
+      isAdmin: foundUser.isAdmin,
     };
 
     const token = this.jwtService.sign(userPayload); //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.

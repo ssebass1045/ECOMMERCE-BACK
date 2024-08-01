@@ -2,13 +2,18 @@ import { Controller, Get, Post, Body, Query, Patch, Param, Delete, Put, HttpCode
 import { UsersService } from './users.service';
 import {  AuthGuard } from 'src/auth/AuthGuard';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from 'src/roles.enum';
+import { RolesGuard } from 'src/auth/roles.guard';
+
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
   findAll(@Query('page') page: number, @Query('Limit') Limit: number){
     if(page && Limit ){
       return this.usersService.findAll(page ,Limit);

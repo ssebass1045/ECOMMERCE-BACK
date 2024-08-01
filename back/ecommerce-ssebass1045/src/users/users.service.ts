@@ -32,7 +32,7 @@ export class UsersService {
     if (!user) {
       return 'User not found'
     }
-    const { password, ...userWithThoutPassword } = user;
+    const { password, isAdmin, ...userWithThoutPassword } = user;
     return userWithThoutPassword;
   }
   
@@ -40,7 +40,7 @@ export class UsersService {
   async create(user: Partial<Users>) {
   const newUser = await this._usersRepository.save(user);
 
-  const { password, ...userWithThoutPassword } = newUser;
+  const { password,isAdmin, ...userWithThoutPassword } = newUser;
     return userWithThoutPassword;
   }
   
@@ -49,7 +49,7 @@ export class UsersService {
     await this._usersRepository.update(id, user);
 
     const update = await this._usersRepository.findOneBy({ id });
-    const { password, ...userWithThoutPassword } = update;
+    const { password,isAdmin, ...userWithThoutPassword } = update;
     return userWithThoutPassword;
   }
 
@@ -57,7 +57,7 @@ export class UsersService {
   async remove(id: string): Promise<Partial<Users>> {
     const user = await this._usersRepository.findOneBy({ id });
     this._usersRepository.remove(user);
-    const { password, ...userWithThoutPassword } = user;
+    const { password, isAdmin, ...userWithThoutPassword } = user;
     return userWithThoutPassword;
   }
 
