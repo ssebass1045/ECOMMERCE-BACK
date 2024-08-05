@@ -26,12 +26,6 @@ export class AuthGuard implements CanActivate {
     }
   
 
-    // const token = request.header.autorization?.split(' ')[1];
-
-    // if(!token) {
-    //   throw new UnauthorizedException('Invalid token');
-    // }
-
     try {
       const secret = process.env.JWT_SECRET;
       const user = this.jwtService.verify(token, { secret }); //{id,email,exp,iat}
@@ -54,33 +48,3 @@ export class AuthGuard implements CanActivate {
 
   }
 }
-
-// function validateEmailRequest(request: Request) {
-//   const email = request.headers['email'];
-//   return email === '1@mail';
-// }
-
-// function validatePasswordRequest(request: Request) {
-//   const password = request.headers['password'];
-//   return password === '1234';
-// }
-
-// @Injectable()
-// export class AuthEmail implements CanActivate {
-//   canActivate(
-//     context: ExecutionContext,
-//   ): boolean | Promise<boolean> | Observable<boolean> {
-//     const request = context.switchToHttp().getRequest();
-//     return validateEmailRequest(request);
-//   }
-// }
-
-// @Injectable()
-// export class AuthPassword implements CanActivate {
-//   canActivate(
-//     context: ExecutionContext,
-//   ): boolean | Promise<boolean> | Observable<boolean> {
-//     const request = context.switchToHttp().getRequest();
-//     return validatePasswordRequest(request);
-//   }
-// }

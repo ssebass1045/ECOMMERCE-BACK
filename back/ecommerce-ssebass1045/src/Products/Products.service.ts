@@ -78,7 +78,4 @@ export class ProductsService {
     }
 
 
-    // remove(id: number) {
-    //     return this._ProductRepository.remove(id);
-    // }
 }

@@ -66,23 +66,5 @@ async signIn(email: string, password: string){
 
 }
 
-// @Injectable()
-// export class AuthService {
-//   constructor(
-//     @InjectRepository(Users) private _usersRepository: Repository<Users>,
-//   ) {}
 
-  // async auth(credential) {
-  //   const { email, password } = credential;
-
-  //   // Buscar al usuario por email
-  //   const user = await this._usersRepository.findOne({ where: { email } });
-
-  //   // Verificar si el usuario existe y si la contraseña es correcta
-  //   if (user && user.password === password) {
-  //     return user;
-  //   }
-
-  //   return "user o Password incorrect";
-  // }
 

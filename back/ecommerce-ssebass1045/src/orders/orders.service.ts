@@ -78,18 +78,5 @@ export class OrdersService {
     return order;
   }
 
-  
 
-  // findAll() {
-  //   return `This action returns all orders`;
-  // }
-
-
-  // update(id: number, updateOrderDto: UpdateOrderDto) {
-  //   return `This action updates a #${id} order`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} order`;
-  // }
 }

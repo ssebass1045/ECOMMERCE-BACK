@@ -43,10 +43,7 @@ async findAll(page: number, Limit: number){
     const user = this.users.slice(start, end)
     
     return user.map(({password, ...user})=> user);
-    // this.user = this.user.map(person => {
-        //     return {...person, password:null}
-        // })
-        // return this.user;
+    
     }
 
     

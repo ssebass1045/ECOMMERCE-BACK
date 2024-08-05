@@ -41,23 +41,4 @@ export class ProductsController {
       return this.productsService.update(id, product);
     }
   
-
-  //   @Post()
-  //   @UseGuards(AuthGuard)
-  //   @HttpCode(201)
-  //   create(@Body() createProduct: CreateProductDto){
-  //       return this.productsService.create(createProduct);
-  //   }
-  //   update(@Body() UpdateProduct, @Param("id") id: string) {
-  //     return this.productsService.update(UpdateProduct, id);
-  //   }
-    
-    
-
-  // @Delete(':id')
-  // @UseGuards(AuthGuard)
-  // remove(@Param('id') id: string) {
-  //   return this.productsService.remove(+id);
-  // }
-
 }
