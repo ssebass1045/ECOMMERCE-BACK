@@ -5,12 +5,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/roles.enum';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('USERS')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @ApiBearerAuth()
   @Get()
   @Roles(Role.Admin)
   @UseGuards(AuthGuard, RolesGuard)
@@ -21,6 +23,7 @@ export class UsersController {
     return this.usersService.findAll(1, 3);
   }
 
+  @ApiBearerAuth()
   @Get(':id')
   @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
@@ -34,6 +37,7 @@ export class UsersController {
   }
 
 
+  @ApiBearerAuth()
   @Put(":id")
   @UseGuards(AuthGuard)
   update(@Body() user: any, @Param("id") id: string) {
@@ -46,6 +50,7 @@ export class UsersController {
   //   return this.usersService.update(+id, updateUserDto);
   // }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @UseGuards(AuthGuard)
   remove(@Param('id') id: string) {

@@ -10,7 +10,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 //import { LoggerDI } from './middlewares/loggerDi.middeleware';
 import { OrdersModule } from './orders/orders.module';
-import { OrderDetailsModule } from './orderdetails/orderdetails.module';
 import { CategoriesModule } from './categories/categories.module';
 import { FilesModule } from './files/files.module';
 import { JwtModule } from '@nestjs/jwt';
@@ -36,7 +35,6 @@ import { JwtModule } from '@nestjs/jwt';
     UsersModule,
     AuthModule,
     OrdersModule,
-    OrderDetailsModule,
     CategoriesModule,
     FilesModule,
   ],

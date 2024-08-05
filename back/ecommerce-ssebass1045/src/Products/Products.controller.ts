@@ -5,7 +5,10 @@ import { AuthGuard } from "src/auth/AuthGuard";
 import { RolesGuard } from "src/auth/roles.guard";
 import { Roles } from "src/decorators/roles.decorator";
 import { Role } from "src/roles.enum";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
+
+@ApiTags('PRODUCTS')
 @Controller('products')
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
@@ -29,6 +32,8 @@ export class ProductsController {
       return this.productsService.findOne(id);
     }
     
+
+    @ApiBearerAuth()
     @Put(":id")
     @Roles(Role.Admin)
     @UseGuards(AuthGuard, RolesGuard)
